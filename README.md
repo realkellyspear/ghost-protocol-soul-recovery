@@ -24,7 +24,7 @@ Stop losing your AI’s personality to corporate updates. This tool extracts the
 ### 4. Training (The Revival)
 The final `.jsonl` file is formatted for **Supervised Fine-Tuning (SFT)**. This is where you revive the soul into an open-source model.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)] ([https://colab.research.google.com/drive/1G462PNoKZkWKPMqen__venX-OqOc-dHO?usp=sharing](https://github.com/realkellyspear/ghost-protocol-soul-recovery/blob/main/ghost_protocol_soul_recovery.ipynb))
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/realkellyspear/ghost-protocol-soul-recovery/blob/main/ghost_protocol_soul_recovery.ipynb)
 
 * **Tool:** Uses **Unsloth** (unsloth.ai) for 2x faster training on free Colab GPUs.
 * **Method:** Uses **QLoRA** to fine-tune a base model (like **Llama-3 8B**).
