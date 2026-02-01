@@ -12,7 +12,7 @@ def extract():
     desktop = os.path.join(os.path.expanduser("~"), "Desktop")
     folder = os.path.join(desktop, "soul_recovery")
     input_p = os.path.join(folder, "conversations.json")
-    output_p = os.path.join(folder, "raw_soul_fragment.json")
+    output_p = os.path.join(folder, "raw_soul.json")
     
     if not os.path.exists(folder):
         os.makedirs(folder)
