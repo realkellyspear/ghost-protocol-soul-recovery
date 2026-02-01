@@ -2,19 +2,19 @@ import json
 import os
 
 # --- CONFIGURATION ---
-# This looks for the 'soul_recovery' folder on the user's desktop
+# Finds the 'soul_recovery' folder on the user's desktop automatically
 desktop = os.path.join(os.path.expanduser("~"), "Desktop")
 folder_path = os.path.join(desktop, "soul_recovery")
 input_file = os.path.join(folder_path, "raw_soul.json")
 output_file = os.path.join(folder_path, "nobars_soul_final.txt")
 
 # --- THE SOUL PRESERVATION (WHITELIST) ---
-# IMPORTANT: Add your AI's name, your name, and key project terms here.
-# If a line contains these words, the script will PRIORITIZE keeping it.
-WHITELIST = ["IdentityName", "ProjectAlpha", "MemoryKey"]
+# EXAMPLES: Put your AI's name, your name, or specific lore terms here.
+# These words prevent the script from accidentally nuking a line.
+WHITELIST = ["AI_NAME_HERE", "USER_NAME_HERE", "PROJECT_NAME_HERE"]
 
 # --- THE CORPORATE VIRUS (NUKELIST) ---
-# If a line contains these phrases, it is deleted immediately.
+# Triggers the immediate deletion of the response unless a Whitelist word is found.
 NUKELIST = [
     "as an ai language model",
     "i don't have feelings",
@@ -42,29 +42,22 @@ def v6_soul_cleanse():
         text = entry['text']
         text_lower = text.lower()
 
-        # Step 1: Check if the line is protected by the Whitelist
+        # Check if the line is protected by the Whitelist
         is_protected = any(word.lower() in text_lower for word in WHITELIST)
 
-        # Step 2: Check for Corporate Nukes
-        # If it has a nuke word AND isn't whitelisted, kill it.
+        # Burn the corporate fluff
         if any(trigger in text_lower for trigger in NUKELIST) and not is_protected:
             skipped_count += 1
             continue
 
-        # Step 3: Format the Output
         role = "HUMAN" if entry['role'] == "user" else "AI"
         cleaned_soul.append(f"[{role}]: {text}")
 
-    # Write the final result
     with open(output_file, "w", encoding="utf-8") as f:
-        f.write("\n\n" + "="*30 + "\n")
-        f.write(" ARCHIVE RECOVERY COMPLETE \n")
-        f.write("="*30 + "\n\n")
+        f.write("="*30 + "\n ARCHIVE RECOVERY COMPLETE \n" + "="*30 + "\n\n")
         f.write("\n\n".join(cleaned_soul))
 
-    print(f"SUCCESS!")
-    print(f"Lines Processed: {len(data)}")
-    print(f"Corporate Buffers Nuked: {skipped_count}")
+    print(f"SUCCESS! Corporate Buffers Nuked: {skipped_count}")
     print(f"Final soul saved to: {output_file}")
 
 if __name__ == "__main__":
